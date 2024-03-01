@@ -6,8 +6,14 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Keyboard,
 } from 'react-native';
+import {request, PERMISSIONS} from 'react-native-permissions';
+
+import DocumentPicker, {
+  pick,
+  pickDirectory,
+} from 'react-native-document-picker';
+
 import styles from './ChatScreen.js';
 
 import backButton from './../../assets/backButton.png';
@@ -23,6 +29,18 @@ function ChatScreen({navigation}) {
 
   const handleSend = () => {
     // yahan kuch to krna hai
+  };
+
+  const handleMediaButton = () => {
+    console.log('Media button pressed');
+
+    request(PERMISSIONS.ANDROID.ACCESS_MEDIA_LOCATION).then(result => {
+      console.log(result);
+
+      const picked = pick({allowMultiSelection: true}).then(result => {
+        console.log(result);
+      });
+    });
   };
 
   return (
@@ -51,7 +69,7 @@ function ChatScreen({navigation}) {
       </ScrollView>
 
       <View style={styles.chatBoxContainer}>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity onPress={handleMediaButton} style={styles.addButton}>
           <Image style={styles.addButtonImage} source={addButton} />
         </TouchableOpacity>
         <TextInput

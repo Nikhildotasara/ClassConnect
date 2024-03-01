@@ -1,8 +1,10 @@
 // Necessary imports
 import React, { useEffect } from 'react'
-import { View,Text } from 'react-native'
+// import { PermissionsAndroid,Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { PERMISSIONS, request, RESULTS} from 'react-native-permissions';
+
 
 // Components imports
 
@@ -12,13 +14,17 @@ import HomeScreen from "./Components/HomeScreen/HomeScreen.jsx";
 import OtpVerification from "./Components/OtpVerification/OtpVerification.jsx";
 import ChatScreen from "./Components/ChatScreen/ChatScreen.jsx";
 
+// import {} from "react-native-fs"
+
 const Stack=createNativeStackNavigator();
 
 function App() {
 
+
   useEffect(()=>{
     console.log("App started")
-  })
+  })  
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
